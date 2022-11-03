@@ -1,0 +1,14 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+:root {
+	--color-gray-: #2a2a2a;
+	--color-white-: #ffffff;
+	--color-black-: #000000;
+	--color-red-: #de0000;
+	--color-btn-login-: #ef5800;
+	--color-green-: #0ecb00;
+}

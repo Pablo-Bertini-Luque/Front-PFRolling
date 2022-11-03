@@ -1,0 +1,163 @@
+.login-email {
+	display: flex;
+	flex-direction: column;
+	width: 90%;
+	margin: 0 auto;
+	justify-content: center;
+}
+
+.login-email__title {
+	margin-top: 3rem;
+	color: var(--color-gray-);
+	font-size: 2rem;
+	margin-bottom: 2rem;
+}
+
+.login-email__form {
+	display: flex;
+	flex-direction: column;
+}
+
+.login-email__container-input {
+	display: flex;
+	flex-direction: column;
+	margin-top: 1.25rem;
+	position: relative;
+	top: 0;
+	left: 0;
+}
+
+.login-email__eye {
+	position: absolute;
+	top: 35px;
+	font-size: 1.5rem;
+	right: 10px;
+}
+
+.login-email__container-input label {
+	margin-bottom: 0.5rem;
+	font-size: 1.05rem;
+}
+
+.login-email__container-input input {
+	padding: 0.3rem;
+	border-radius: 5px;
+	border: 1px solid var(--color-gray-);
+	font-size: 1.05rem;
+}
+
+.login-email__password-forgotten {
+	text-decoration: none;
+	color: var(--color-red-);
+	font-weight: bold;
+	margin: 1.5rem 0;
+}
+
+.login-email__button {
+	background: var(--color-btn-login-);
+	padding: 0.75rem;
+	border: 1px solid var(--color-btn-login-);
+	font-size: 1.1rem;
+	color: var(--color-white-);
+	border-radius: 25px;
+	margin-top: 1.25rem;
+}
+
+.login-email__register {
+	text-decoration: none;
+	padding: 0.75rem;
+	border: 1px solid var(--color-gray-);
+	font-size: 1.1rem;
+	color: var(--color-dark-);
+	border-radius: 25px;
+	text-align: center;
+	margin-top: 1.5rem;
+}
+
+.login-email__input-not {
+	border: 1px solid var(--color-red-) !important;
+}
+
+.login-email__input-ok {
+	border: 1px solid var(--color-black-) !important;
+}
+
+.error {
+	color: var(--color-red-);
+}
+
+@media (min-width: 450px) {
+	.login-email__title {
+		font-size: 2.75rem;
+	}
+
+	.login-email__container-input label {
+		margin-bottom: 0.75rem;
+		font-size: 1.15rem;
+	}
+
+	.login-email__container-input input {
+		font-size: 1.15rem;
+	}
+
+	.login-email__password-forgotten {
+		font-size: 1.1rem;
+		margin: 2rem 0;
+	}
+
+	.login-email__button {
+		padding: 1rem;
+	}
+
+	.login-email__register {
+		padding: 1rem;
+	}
+
+	.login-email__eye {
+		position: absolute;
+		top: 45px;
+		font-size: 1.85rem;
+		right: 10px;
+	}
+}
+
+@media (min-width: 998px) {
+	.login-email__form {
+		width: 700px;
+	}
+
+	.login-email__title {
+		margin-top: 2rem;
+		font-size: 3rem;
+	}
+
+	.login-email__container-input label {
+		margin-bottom: 0.5rem;
+		font-size: 1.25rem;
+	}
+
+	.login-email__container-input input {
+		font-size: 1.25rem;
+		padding: 0.75rem;
+		border-radius: 15px;
+	}
+
+	.login-email__password-forgotten {
+		font-size: 1.1rem;
+		margin: 2rem 0;
+	}
+
+	.login-email__button {
+		padding: 1rem;
+		font-size: 1.15rem;
+		border-radius: 50px;
+	}
+
+	.login-email__register {
+		width: 700px;
+		padding: 1rem;
+		font-size: 1.15rem;
+		border-radius: 50px;
+		margin-bottom: 2rem;
+	}
+}
