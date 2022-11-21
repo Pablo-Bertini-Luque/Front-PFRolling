@@ -9,10 +9,7 @@
 }
 
 .containerImages {
-  min-height: calc(100vh - 15vh - 20vh);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  min-height: calc(100vh - 15vh - 10vh);
 }
 
 .header {
@@ -34,5 +31,5 @@
 }
 
 .footer {
-  min-height: 20vh;
+  min-height: 10vh;
 }
