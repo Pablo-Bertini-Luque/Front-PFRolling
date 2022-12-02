@@ -1,3 +1,4 @@
+import React from "react";
 import { useEffect, useState } from "react";
 import { Button, Container, Row, Col, Form } from "react-bootstrap";
 import { ImSearch } from "react-icons/im";
@@ -5,6 +6,13 @@ import * as API from "../services/question";
 
 function SearchBar() {
   const [search, setSearch] = useState("");
+  const [questions, setQuestions] = useState([]);
+
+  useEffect(() => {
+    API.GetAllQuestion()
+      .then((data) => setQuestions(data.questions))
+      .catch((error) => console.log(error));
+  }, []);
 
   const handleChange = (e) => {
     setSearch(e.target.value);
@@ -15,7 +23,7 @@ function SearchBar() {
     <Container>
       <Row>
         <Col>
-          <Form className="d-flex">
+          <Form className="d-flex m-3">
             <Form.Control
               type="search"
               placeholder="Busqueda por tema o categoría"

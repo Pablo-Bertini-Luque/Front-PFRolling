@@ -9,3 +9,13 @@ export async function GetAllQuestion() {
     console.error(error);
   }
 }
+
+export async function GetAllCategories() {
+  try {
+    const response = await fetch(`${API_URL}/category`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}

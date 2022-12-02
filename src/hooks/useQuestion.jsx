@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
-import Container from "react-bootstrap/esm/Container";
-import Row from "react-bootstrap/esm/Row";
-import Col from "react-bootstrap/esm/Col";
+import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import * as API from "../services/question";
 import "../css/useQuestion.css";
@@ -23,7 +21,10 @@ export function AllQuestion() {
             <ul>
               {questions?.map((question) => (
                 <li key={question._id} className="mb-5 topic">
-                  <Link to="" className="text-dark text-decoration-none">
+                  <Link
+                    to={`/question/${question._id}`}
+                    className="text-dark text-decoration-none"
+                  >
                     <p>Tema: {question.topic}</p>
                   </Link>
                   <p>{question.message}</p>

@@ -1,0 +1,23 @@
+.root {
+  box-sizing: border-box;
+  margin: 0%;
+  padding: 0%;
+}
+
+.tagCategory {
+  background-color: gray;
+  border: 0.5px solid black;
+  width: 10px;
+  font-size: 10px;
+  text-align: center;
+}
+
+.root {
+  box-sizing: border-box;
+  margin: 0%;
+  padding: 0%;
+}
+
+.containerQuestion {
+  min-height: calc(100vh - 15vh - 10vh);
+}
