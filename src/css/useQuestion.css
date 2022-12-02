@@ -1,0 +1,36 @@
+.root {
+  box-sizing: border-box;
+  margin: 0%;
+  padding: 0%;
+}
+
+.text {
+  text-decoration: none;
+}
+
+.topic {
+  list-style: none;
+}
+
+.topic:hover {
+  animation: scale-up-top-left 0.9s;
+}
+
+@keyframes scale-up-top-left {
+  0% {
+    transform: scale(0.5);
+    transform-origin: top left;
+  }
+  100% {
+    transform: scale(1);
+    transform-origin: top left;
+  }
+}
+
+.tagCategories {
+  background-color: gray;
+  border: 0.5px solid black;
+  width: 10px;
+  font-size: 10px;
+  text-align: center;
+}

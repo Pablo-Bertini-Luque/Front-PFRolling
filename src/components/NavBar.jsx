@@ -1,17 +1,17 @@
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import "../css/navbar.css";
+import React from "react";
+import { Container, Row, Col, Nav, Navbar } from "react-bootstrap";
+import Image from "react-bootstrap/Image";
 import { Link } from "react-router-dom";
+import Logo from "../assets/image/logo.png";
+
+import "../css/navbar.css";
 
 function NavBarComponents() {
   return (
     <>
       <Navbar>
-        <Container>
-          <Nav>
+        <Container className="gap-1">
+          <Nav className="NavbarCollapse gap-5">
             <Nav.Item>
               <Link className="navLink" to="/">
                 Inicio
@@ -28,15 +28,11 @@ function NavBarComponents() {
               </Link>
             </Nav.Item>
           </Nav>
-          <Form className="d-flex">
-            <Form.Control
-              type="search"
-              placeholder="Ingrese lo que desea buscar"
-              className="me-2 inputSearcher"
-              aria-label="Search"
-            />
-            <Button variant="outline-success">Search</Button>
-          </Form>
+        </Container>
+        <Container>
+          <Row>
+            <Col></Col>
+          </Row>
         </Container>
       </Navbar>
     </>

@@ -7,7 +7,9 @@ import Login from "./pages/Login";
 import LoginEmail from "./pages/LoginEmail";
 import Register from "./pages/Register";
 import AboutUs from "./pages/AboutUs";
+import Question from "./pages/Question";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Categories from "./pages/Categories";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -19,6 +21,8 @@ root.render(
         <Route path="/login/email" element={<LoginEmail />} />
         <Route path="/register" element={<Register />} />
         <Route path="/aboutus" element={<AboutUs />} />
+        <Route path="/question/:id" element={<Question />} />
+        <Route path="/question/category/:id" element={<Categories />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
