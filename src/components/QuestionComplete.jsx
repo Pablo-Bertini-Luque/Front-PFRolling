@@ -30,10 +30,10 @@ export function QuestionComplete() {
             <p className="fs-3 d-flex question">{questions.message}</p>
             <p className="tagCategory" style={{ width: "5.4em" }}>
               {" "}
-              {/* {questions.category.name} */}
+              {questions.category?.name}
             </p>
             <p style={{ fontSize: "10px" }}>
-              {/* Creado por: {questions.user.name} */}
+              Creado por: {questions.user?.name}
             </p>
             <p>
               Respuestas: <li> {questions.answer}</li>

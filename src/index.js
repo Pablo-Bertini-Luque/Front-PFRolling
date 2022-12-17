@@ -10,7 +10,7 @@ import AboutUs from "./pages/AboutUs";
 import Question from "./pages/Question";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Categories from "./pages/Categories";
-import { LoginPrueba } from "./pages/LoginPrueba";
+import ViewLoginUser from "./pages/ViewLoginUser";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -24,7 +24,7 @@ root.render(
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/question/:id" element={<Question />} />
         <Route path="/question/category/:id" element={<Categories />} />
-        <Route path="/loginPrueba" element={<LoginPrueba />} />
+        <Route path="/login/user/:id" element={<ViewLoginUser />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
