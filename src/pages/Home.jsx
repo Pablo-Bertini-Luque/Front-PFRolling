@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import NavBarComponents from "./NavBar";
-import ColumnCategories from "./ColumnCategories";
+import NavBarComponents from "../components/NavBar";
+import ColumnCategories from "../components/ColumnCategories";
 import { AllQuestion } from "../hooks/useQuestion";
 import { Container, Row, Col, Button, Form, Modal } from "react-bootstrap";
-import SearchBar from "./SearchBar";
-import "../css/home.css";
+import SearchBar from "../components/SearchBar";
 import { Link } from "react-router-dom";
+import "../css/home.css";
 
 function Home() {
   const [show, setShow] = useState(false);
@@ -14,6 +14,13 @@ function Home() {
   const handleShow = () => setShow(true);
 
   const [categories, setCategories] = useState([]);
+
+  const tokenAccess = localStorage.getItem("user-token");
+  const options = {
+    headers: {
+      access_token: tokenAccess,
+    },
+  };
 
   const Category = async () => {
     const response = await fetch(`http://localhost:4002/api/v1/category`);
@@ -30,7 +37,7 @@ function Home() {
   //     const response = await axios.post(
   //       "http://localhost:4002/api/v1/question",
   //       { category: category, topic: topic, message: message
-  //       }
+  //       }, options
   //     );
   //     const data = await response;
   //     return data;
@@ -77,18 +84,17 @@ function Home() {
             <Form>
               <Form.Group className="mb-3">
                 <Form.Label>Categoria</Form.Label>
-                {categories?.map((category) => (
-                  <div key={category._id}>
-                    <input
-                      type="radio"
-                      name="category"
+                <select>
+                  {categories?.map((category) => (
+                    <option
                       key={category._id}
-                      value={category}
+                      value={category._id}
                       style={{ margin: "5px" }}
-                    />
-                    <label>{category.name}</label>
-                  </div>
-                ))}
+                    >
+                      {category.name}{" "}
+                    </option>
+                  ))}
+                </select>
               </Form.Group>
               <Form.Group
                 className="mb-3"

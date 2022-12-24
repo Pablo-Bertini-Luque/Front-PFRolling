@@ -45,15 +45,30 @@ const LoginEmail = () => {
       const newuser = await log(username, password);
       console.log(newuser);
       const { token } = await newuser.data;
+      const { role, active, deleted } = await newuser.data.user;
+      console.log(role);
+      console.log(active);
       localStorage.setItem("user-token", token);
       if (localStorage.getItem("user-token")) {
-        navigate(`/login/user/${newuser.data.user._id}`, { replace: true });
-      } else {
-        console.log("chau");
+        if (role === "super-admin") {
+          navigate("/login/user/super-admin", { replace: true });
+          return;
+        }
+
+        if (role === "client" && active === true) {
+          navigate(`/login/user/${newuser.data.user._id}`, { replace: true });
+          return;
+        }
+        if (deleted === true) {
+          alert(
+            "Su usuario no se encuentra activo. Comuniquese con el administrador"
+          );
+          return;
+        }
+        setUser(newuser);
+        setUsername("");
+        setPassword("");
       }
-      setUser(newuser);
-      setUsername("");
-      setPassword("");
     } catch (error) {
       console.log(error);
     }
@@ -150,9 +165,9 @@ const LoginEmail = () => {
                     <div className="error">{errors.login_email_password}</div>
                   )}
               </div>
-              <a href="#" className="login-email__password-forgotten">
+              <Link to="*" className="login-email__password-forgotten">
                 ¿Has olvidado tu contraseña?
-              </a>
+              </Link>
               <button
                 type="submit"
                 onClick={handleLogin}

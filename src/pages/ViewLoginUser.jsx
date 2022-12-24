@@ -1,8 +1,17 @@
 import { React, useState, useEffect } from "react";
-import { BsList } from "react-icons/bs";
+import { Link, useParams, Outlet } from "react-router-dom";
+import {
+  Button,
+  Card,
+  Col,
+  Container,
+  Row,
+  Nav,
+  Navbar,
+} from "react-bootstrap";
+import Footer from "../components/Footer";
 import "../css/viewUser.css";
-import Pregunta from "../pages/Pregunta";
-import { useParams } from "react-router-dom";
+import "../css/navbar.css";
 
 const ViewLoginUser = () => {
   const { id } = useParams();
@@ -18,36 +27,112 @@ const ViewLoginUser = () => {
     console.log(data);
   };
 
+  const logOut = () => {
+    localStorage.removeItem("user-token");
+  };
+
   useEffect(() => {
     userById();
   }, []);
 
   return (
     <>
+      <Navbar>
+        <Container>
+          <Nav className="NavbarCollapse gap-2">
+            <Nav.Item>
+              <Link className="navLink" to="/">
+                Inicio
+              </Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Link className="navLink ms-2" to="/aboutUs">
+                Acerca de nosotros
+              </Link>
+            </Nav.Item>
+          </Nav>
+          <Col className="d-flex justify-content-end">
+            <Link className="navLink" to="/" onClick={logOut}>
+              Cerrar Sesion
+            </Link>
+          </Col>
+        </Container>
+      </Navbar>
       <div className="viewUser">
         <div className="viewUser__header">
-          <BsList className="viewUser__menu" />
-          <h2 className="viewUser__title">Bienvenido a {user?.user.name} </h2>
+          <h2 className="viewUser__title">¡Bienvenido {user?.user.name}! </h2>
         </div>
         <div className="viewUser__container-description">
           <p className="viewUser__description">
-            Cualquiera puede formular una pregunta Cualquiera puede responder
-            Vota a favor de las mejores respuestas
+            En este sección encontraras toda tu informacion
           </p>
         </div>
-        <form className="viewUser__form">
-          <input
-            type="text"
-            className="viewUser__search"
-            placeholder="Buscar"
-          />
-          <input type="submit" className="viewUser__submit" />
-        </form>
         <div className="viewUser__main">
-          <h3 className="viewUser__main-title">Todas las Preguntas</h3>
-          <Pregunta />
+          <Container>
+            <Row>
+              <Col>
+                {["Light"].map((variant) => (
+                  <Card
+                    bg={variant.toLowerCase()}
+                    key={variant}
+                    text={variant.toLowerCase() === "light" ? "dark" : "white"}
+                    style={{ width: "18rem" }}
+                    className="mb-2"
+                  >
+                    <Card.Header className="text-center">
+                      Mis preguntas
+                    </Card.Header>
+                    <Card.Body>
+                      <Card.Text>
+                        Haz click para encontrar todas las preguntas que
+                        realizaste.
+                      </Card.Text>
+                      <Link
+                        to=""
+                        className="d-flex justify-content-end"
+                        style={{ textDecoration: "none" }}
+                      >
+                        <Button variant="dark" size="sm">
+                          Ver mas
+                        </Button>
+                      </Link>
+                    </Card.Body>
+                  </Card>
+                ))}
+              </Col>
+              <Col>
+                {["Dark"].map((variant) => (
+                  <Card
+                    bg={variant.toLowerCase()}
+                    key={variant}
+                    text={variant.toLowerCase() === "light" ? "dark" : "white"}
+                    style={{ width: "18rem" }}
+                    className="mb-2"
+                  >
+                    <Card.Header className="text-center">Mi perfil</Card.Header>
+                    <Card.Body>
+                      <Card.Text>
+                        Haz click para ver la información sobre tu perfil.
+                      </Card.Text>
+                      <Link
+                        to="MyProfile"
+                        className="d-flex justify-content-end"
+                        style={{ textDecoration: "none" }}
+                      >
+                        <Button variant="light" size="sm">
+                          Ver mas
+                        </Button>
+                      </Link>
+                    </Card.Body>
+                  </Card>
+                ))}
+              </Col>
+            </Row>
+          </Container>
+          <Outlet />
         </div>
       </div>
+      <Footer />
     </>
   );
 };

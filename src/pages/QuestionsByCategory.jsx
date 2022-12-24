@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import NavBarComponents from "./NavBar";
-import Footer from "./Footer";
-import "../css/questionComplete.css";
+import NavBarComponents from "../components/NavBar";
+import Footer from "../components/Footer";
+import "../css/completeQuestions.css";
 
 export function QuestionsByCategory() {
   const [categories, setCategories] = useState([]);
@@ -28,7 +28,7 @@ export function QuestionsByCategory() {
       <NavBarComponents />
       <Container className="containerQuestion">
         <Row>
-          <Col className="m-3">
+          <Col className="m-3 //container-users">
             {categories?.map((category) => (
               <Card
                 key={category._id}
@@ -42,10 +42,6 @@ export function QuestionsByCategory() {
                   </Card.Subtitle>
                   <Card.Text className="pt-2">{category.answer}</Card.Text>
                   <Card.Subtitle>{category.category.name} </Card.Subtitle>
-                  <Button className="mt-4" variant="primary" size="sm">
-                    {" "}
-                    Agregar respuesta
-                  </Button>
                 </Card.Body>
               </Card>
             ))}
