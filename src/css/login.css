@@ -1,95 +1,110 @@
 .login {
-	display: flex;
-	flex-direction: column;
-	width: 90%;
-	margin: 0 auto;
-	justify-content: center;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 0 auto;
+  justify-content: center;
 }
 
 .login__container-logo {
-	display: flex;
-	justify-content: start;
-	align-items: center;
-	margin-top: 3rem;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-top: 3rem;
 }
 
 .login__logo {
-	width: 125px;
+  width: 125px;
 }
 
 .login__title {
-	font-size: 2rem;
-	margin-left: 0.5rem;
+  font-size: 2rem;
+  margin-left: 0.5rem;
 }
 
 .login__container-text {
-	display: flex;
-	flex-direction: column;
-	margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  margin-top: 3rem;
 }
 
 .login__text-title {
-	color: var(--color-gray-);
-	font-size: 2rem;
-	margin-bottom: 2rem;
+  color: var(--color-gray-);
+  font-size: 2rem;
+  margin-bottom: 2rem;
 }
 
 .login__email {
-	text-decoration: none;
-	font-weight: bolder;
-	color: var(--color-red-);
-	margin: 2rem auto 0;
+  text-decoration: none;
+  font-weight: bolder;
+  color: var(--color-red-);
+  margin: 2rem auto 0;
+}
+
+.notFound {
+  text-decoration: none;
+  font-weight: bolder;
+  margin: 2rem auto 0;
+  color: var(--color-red-);
 }
 
 @media (min-width: 450px) {
-	.login__logo {
-		width: 150px;
-	}
-	.login__title {
-		font-size: 2.75rem;
-	}
+  .login__logo {
+    width: 150px;
+  }
+  .login__title {
+    font-size: 2.75rem;
+  }
 
-	.login__container-text {
-		margin-top: 4rem;
-	}
+  .login__container-text {
+    margin-top: 4rem;
+  }
 
-	.login__text-title {
-		font-size: 2.5rem;
-		margin-bottom: 2.5rem;
-	}
+  .login__text-title {
+    font-size: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
 
-	.login__email {
-		font-size: 1.15rem;
-	}
+  .login__email {
+    font-size: 1.15rem;
+  }
+
+  .notFound {
+    font-size: 1.15rem;
+  }
 }
 
 @media (min-width: 998px) {
-	.login__logo {
-		width: 150px;
-	}
-	.login__title {
-		font-size: 2.5rem;
-	}
+  .login__logo {
+    width: 150px;
+  }
+  .login__title {
+    font-size: 2.5rem;
+  }
 
-	.login__text-title {
-		font-size: 2.25rem;
-		margin-bottom: 2rem;
-	}
+  .login__text-title {
+    font-size: 2.25rem;
+    margin-bottom: 2rem;
+  }
 
-	.button-login {
-		width: 600px;
-		margin: 1rem auto 0;
-	}
+  .button-login {
+    width: 600px;
+    margin: 1rem auto 0;
+  }
 
-	.button-login__icon {
-		font-size: 2rem;
-	}
-	.button-login__text {
-		font-size: 1rem;
-		margin-left: 1.5rem;
-	}
+  .button-login__icon {
+    font-size: 2rem;
+  }
+  .button-login__text {
+    font-size: 1rem;
+    margin-left: 1.5rem;
+  }
 
-	.login__email {
-		font-size: 1.25rem;
-	}
+  .login__email {
+    font-size: 1.25rem;
+  }
+
+  .notFound {
+    font-size: 1.25rem;
+  }
 }

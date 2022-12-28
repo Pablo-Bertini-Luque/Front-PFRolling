@@ -28,7 +28,11 @@ const ViewLoginUser = () => {
   };
 
   const logOut = () => {
-    localStorage.removeItem("user-token");
+    return (
+      localStorage.removeItem("user-token"),
+      localStorage.removeItem("id-user"),
+      localStorage.removeItem("role")
+    );
   };
 
   useEffect(() => {

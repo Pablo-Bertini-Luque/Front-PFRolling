@@ -9,18 +9,21 @@ import {
   Button,
   Card,
 } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Footer from "../components/Footer";
 import "../css/navbar.css";
 import "../css/viewUser.css";
+import ReactiveUser from "../components/ActiveUser";
+import InactiveUser from "../components/DeleteUser";
 
 function SuperAdmin() {
   const [users, setUsers] = useState([]);
   const [admin, setAdmin] = useState();
+  const { id } = useParams();
 
   const dateAdmin = async () => {
     const response = await fetch(
-      `http://localhost:4002/api/v1/users/list/63113e23ad30ec419157f3fa`
+      `http://localhost:4002/api/v1/users/list/${id}`
     );
     const data = await response.json();
     setAdmin(data);
@@ -35,7 +38,7 @@ function SuperAdmin() {
   };
 
   const role = (role) => {
-    if (role == "client") {
+    if (role === "client") {
       return "Cliente";
     } else {
       return "Administrador";
@@ -181,6 +184,20 @@ function SuperAdmin() {
                 </>
               ))}
             </div>
+          </Col>
+        </Row>
+      </Container>
+      <Container className="mt-5 mb-5">
+        <Row>
+          <Col>
+            <InactiveUser />
+          </Col>
+        </Row>
+      </Container>
+      <Container className="mt-2 pb-3">
+        <Row>
+          <Col>
+            <ReactiveUser />
           </Col>
         </Row>
       </Container>
