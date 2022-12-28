@@ -5,7 +5,7 @@ import { Formik, replace } from "formik";
 import { AiFillEye } from "react-icons/ai";
 import axios from "axios";
 
-const LoginEmail = () => {
+function LoginEmail() {
   const [eye, setEye] = useState(false);
 
   const [username, setUsername] = useState("");
@@ -45,18 +45,20 @@ const LoginEmail = () => {
       const newuser = await log(username, password);
       console.log(newuser);
       const { token } = await newuser.data;
-      const { role, active, deleted } = await newuser.data.user;
-      console.log(role);
-      console.log(active);
+      const { role, active, deleted, _id } = await newuser.data.user;
       localStorage.setItem("user-token", token);
+      localStorage.setItem("id-user", _id);
+      localStorage.setItem("role", role);
       if (localStorage.getItem("user-token")) {
         if (role === "super-admin") {
-          navigate("/login/user/super-admin", { replace: true });
+          navigate(`/login/user/super-admin/${_id}`, {
+            replace: true,
+          });
           return;
         }
 
         if (role === "client" && active === true) {
-          navigate(`/login/user/${newuser.data.user._id}`, { replace: true });
+          navigate(`/login/user/${_id}`, { replace: true });
           return;
         }
         if (deleted === true) {
@@ -181,9 +183,12 @@ const LoginEmail = () => {
         <Link to="/register" className="login-email__register">
           Registrarse
         </Link>
+        <Link className="notFound" to="/">
+          Volver a Inicio
+        </Link>
       </div>
     </>
   );
-};
+}
 
 export default LoginEmail;

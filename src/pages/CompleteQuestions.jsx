@@ -8,7 +8,7 @@ import axios from "axios";
 
 export function CompleteQuestions() {
   const [questions, setQuestions] = useState([]);
-  const [answer, setAnswer] = useState("Hola");
+  const [answer, setAnswer] = useState();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -29,35 +29,25 @@ export function CompleteQuestions() {
   };
 
   const handleChangeAnswer = (e) => {
-    setAnswer(e.target.value || "Hola");
+    setAnswer(e.target.value);
     console.log(e.target.value);
   };
 
-  const CreateAnswer = async (idQuestion, answerQuestion) => {
+  const CreateAnswer = async (e) => {
+    e.preventDefault();
     try {
       const response = await axios.post(
         "http://localhost:4002/api/v1/answer/",
         {
           idQuestion: id,
-          answerQuestion: answer,
+          message: answer,
         },
         options
       );
-      const data = await response.json();
+      const data = await response.json;
       return data;
     } catch (error) {
       console.error(error);
-    }
-  };
-
-  const handleAnswer = async (event) => {
-    event.preventDefault();
-    try {
-      const newAnswer = await CreateAnswer(id, answer);
-      console.log(newAnswer);
-      setAnswer(newAnswer);
-    } catch (error) {
-      console.log(error);
     }
   };
 
@@ -69,21 +59,23 @@ export function CompleteQuestions() {
             <Modal.Title>Respuesta</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <form onSubmit={handleAnswer}>
-              <input
-                type="text"
-                value={answer}
-                onChange={handleChangeAnswer}
-              ></input>
-              <input type="submit"></input>
-            </form>
+            <Form onSubmit={CreateAnswer}>
+              <Form.Group className="mb-3">
+                <Form.Control
+                  value={answer}
+                  onChange={handleChangeAnswer}
+                  as="textarea"
+                  rows={3}
+                />
+              </Form.Group>
+              <Button variant="primary" type="submit">
+                Enviar pregunta
+              </Button>
+            </Form>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
               Cerrar
-            </Button>
-            <Button variant="primary" onClick={handleAnswer}>
-              Enviar respuesta
             </Button>
           </Modal.Footer>
         </Modal>

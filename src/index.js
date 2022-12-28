@@ -14,6 +14,7 @@ import { NotFound } from "./components/NotFound";
 import "bootstrap/dist/css/bootstrap.min.css";
 import MyProfile from "./pages/MyProfile";
 import SuperAdmin from "./pages/SuperAdmin";
+import InactiveUser from "./pages/prueba";
 
 const tokenAccess = localStorage.getItem("user-token");
 
@@ -36,7 +37,8 @@ root.render(
         <Route path="/login/user/:id" element={<ViewLoginUser />}>
           <Route path="MyProfile" element={<MyProfile />} />
         </Route>
-        <Route path="/login/user/super-admin" element={<SuperAdmin />} />
+        <Route path="/login/user/super-admin/:id" element={<SuperAdmin />} />
+        <Route path="/Prueba" element={<InactiveUser />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
