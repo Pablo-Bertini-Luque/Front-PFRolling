@@ -19,8 +19,9 @@ function AboutUs() {
           <Col>
             <Image src={Pablo} roundedCircle className="w-50" />
             <Link
-              to="https://www.linkedin.com/in/pablo-ezequiel-bertini-luque-8284118b/"
+              to="https://www.linkedin.com/in/pablo-ezequiel-bertini-luque/"
               className="d-block mt-2"
+              style={{ textDecoration: "none" }}
             >
               Pablo Bertini Luque
             </Link>
@@ -28,8 +29,9 @@ function AboutUs() {
           <Col>
             <Image src={Axel} roundedCircle className="w-50" />
             <Link
-              to="https://www.linkedin.com/in/pablo-ezequiel-bertini-luque-8284118b/"
+              to="https://www.linkedin.com/in/axel-angelucci/"
               className="d-block mt-2"
+              style={{ textDecoration: "none" }}
             >
               Axel Angelucci
             </Link>
@@ -37,8 +39,9 @@ function AboutUs() {
           <Col>
             <Image src={Tomas} roundedCircle className="w-50" />
             <Link
-              to="https://www.linkedin.com/in/pablo-ezequiel-bertini-luque-8284118b/"
+              to="https://www.linkedin.com/in/tomas-dnl/"
               className="d-block mt-2"
+              style={{ textDecoration: "none" }}
             >
               Tomas Aranda
             </Link>

@@ -2,21 +2,38 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { Button, Container, Row, Col, Form } from "react-bootstrap";
 import { ImSearch } from "react-icons/im";
-import * as API from "../services/question";
 
 function SearchBar() {
   const [search, setSearch] = useState("");
   const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
-    API.GetAllQuestion()
-      .then((data) => setQuestions(data.questions))
-      .catch((error) => console.log(error));
+    GetAllQuestion();
   }, []);
+
+  const GetAllQuestion = async () => {
+    try {
+      const response = await fetch("http://localhost:4002/api/v1/question");
+      const data = await response.json();
+      console.log(data.questions);
+      setQuestions(data.questions);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  // const resultSearch = (termino) => {
+  //   const data = questions.filter((question) => {
+  //     if (question.category.name.includes(termino)) {
+  //       return question;
+  //     }
+  //   });
+  //   setQuestions(data);
+  // };
 
   const handleChange = (e) => {
     setSearch(e.target.value);
-    console.log(e.target.value);
+    // resultSearch(e.target.value);
   };
 
   return (
