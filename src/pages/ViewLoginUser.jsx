@@ -92,7 +92,7 @@ const ViewLoginUser = () => {
                         realizaste.
                       </Card.Text>
                       <Link
-                        to=""
+                        to="MyQuestions"
                         className="d-flex justify-content-end"
                         style={{ textDecoration: "none" }}
                       >

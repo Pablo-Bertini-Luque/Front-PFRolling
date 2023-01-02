@@ -2,7 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  useNavigate,
+} from "react-router-dom";
 import Login from "./pages/Login";
 import LoginEmail from "./pages/LoginEmail";
 import Register from "./pages/Register";
@@ -14,9 +20,7 @@ import { NotFound } from "./components/NotFound";
 import "bootstrap/dist/css/bootstrap.min.css";
 import MyProfile from "./pages/MyProfile";
 import SuperAdmin from "./pages/SuperAdmin";
-import InactiveUser from "./pages/prueba";
-
-const tokenAccess = localStorage.getItem("user-token");
+import MyQuestions from "./pages/MyQuestions";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -36,9 +40,9 @@ root.render(
         />
         <Route path="/login/user/:id" element={<ViewLoginUser />}>
           <Route path="MyProfile" element={<MyProfile />} />
+          <Route path="MyQuestions" element={<MyQuestions />} />
         </Route>
         <Route path="/login/user/super-admin/:id" element={<SuperAdmin />} />
-        <Route path="/Prueba" element={<InactiveUser />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

@@ -7,7 +7,8 @@ import {
   Navbar,
   Figure,
   Button,
-  Card,
+  Table,
+  Image,
 } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import Footer from "../components/Footer";
@@ -54,8 +55,6 @@ function SuperAdmin() {
     setUsers(data);
     console.log(data);
   };
-
-  console.log(users);
 
   useEffect(() => {
     getAllUsers();
@@ -148,42 +147,45 @@ function SuperAdmin() {
       <Container className="mt-5">
         <Row>
           <Col>
-            <h1 className="fw-bold text-center mb-2">Listado de usuarios</h1>
-            <div className="container-users">
-              {users.allUsers?.map((user) => (
-                <>
-                  <Card key={user._id}>
-                    <Card.Img
-                      variant="top"
-                      src={user.avatar}
-                      style={{ width: "50px" }}
-                      className="p-1"
-                    />
-                    <Card.Body>
-                      <Card.Title style={{ fontSize: "11px" }}>
-                        {user.name}
-                      </Card.Title>
-                      <p style={{ fontSize: "11px" }}>
-                        <span className="fw-bold">Id usuario: </span>
-                        {user._id}
-                      </p>
-                      <p style={{ fontSize: "11px" }}>
-                        <span className="fw-bold">Email: </span>
-                        {user.email}
-                      </p>
-                      <p style={{ fontSize: "11px" }}>
-                        <span className="fw-bold">Rol: </span>
-                        {user.role}
-                      </p>
-                      <p style={{ fontSize: "11px" }}>
-                        <span className="fw-bold">Estado: </span>
-                        {state(user.active)}
-                      </p>
-                    </Card.Body>
-                  </Card>
-                </>
-              ))}
-            </div>
+            <h1 className="fw-bold text-center mb-4">Listado de usuarios</h1>
+            <Table responsive>
+              <thead>
+                <tr>
+                  {Array.from({ length: 1 }).map((_, index) => (
+                    <>
+                      <th key={index}>Id usuario</th>
+                      <th key={index}>Nombre</th>
+                      <th key={index}>Email</th>
+                      <th key={index}>Rol</th>
+                      <th key={index}>Estado</th>
+                      <th key={index}>Imagen</th>
+                    </>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {Array.from({ length: 1 }).map((_, index) =>
+                  users.allUsers?.map((user) => (
+                    <>
+                      <tr>
+                        <td key={user._id}>{user._id}</td>
+                        <td key={user._id}>{user.name}</td>
+                        <td key={user._id}>{user.email}</td>
+                        <td key={user._id}>{role(user.role)}</td>
+                        <td key={user._id}>{state(user.active)}</td>
+                        <td key={user._id}>
+                          <Image
+                            src={user.avatar}
+                            roundedCircle
+                            style={{ width: "50px" }}
+                          />
+                        </td>
+                      </tr>
+                    </>
+                  ))
+                )}
+              </tbody>
+            </Table>
           </Col>
         </Row>
       </Container>
