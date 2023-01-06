@@ -3,6 +3,8 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { Button, Col, Container, Row, Figure } from "react-bootstrap";
 
 function MyProfile() {
+  const apiUrl = process.env.REACT_APP_API_URL;
+
   const { id } = useParams();
 
   const navigate = useNavigate();
@@ -10,9 +12,7 @@ function MyProfile() {
   const [user, setUser] = useState();
 
   const userById = async () => {
-    const response = await fetch(
-      `http://localhost:4002/api/v1/users/list/${id}`
-    );
+    const response = await fetch(`${apiUrl}/users/list/${id}`);
     const data = await response.json();
     setUser(data);
     console.log(data);

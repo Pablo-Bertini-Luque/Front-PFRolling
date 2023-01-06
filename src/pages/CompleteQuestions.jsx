@@ -7,6 +7,8 @@ import "../css/completeQuestions.css";
 import axios from "axios";
 
 export function CompleteQuestions() {
+  const apiUrl = process.env.REACT_APP_API_URL;
+
   const [questions, setQuestions] = useState([]);
   const [answer, setAnswer] = useState();
   const [show, setShow] = useState(false);
@@ -22,7 +24,7 @@ export function CompleteQuestions() {
   };
 
   const GetQuestionById = async () => {
-    const response = await fetch(`http://localhost:4002/api/v1/question/${id}`);
+    const response = await fetch(`${apiUrl}/question/${id}`);
     const data = await response.json();
     setQuestions(data);
     console.log(data);
@@ -37,7 +39,7 @@ export function CompleteQuestions() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:4002/api/v1/answer/",
+        `${apiUrl}/answer/`,
         {
           idQuestion: id,
           message: answer,
@@ -69,7 +71,7 @@ export function CompleteQuestions() {
                 />
               </Form.Group>
               <Button variant="primary" type="submit">
-                Enviar pregunta
+                Enviar respuesta
               </Button>
             </Form>
           </Modal.Body>

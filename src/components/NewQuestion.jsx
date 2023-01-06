@@ -4,6 +4,8 @@ import { Container, Row, Col, Button, Form, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 function NewsQuestions() {
+  const apiUrl = process.env.REACT_APP_API_URL;
+
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -21,17 +23,21 @@ function NewsQuestions() {
     },
   };
 
-  const Category = async () => {
-    const response = await fetch(`http://localhost:4002/api/v1/category`);
+  const getCategory = async () => {
+    const response = await fetch(`${apiUrl}/category`);
     const data = await response.json();
     setCategories(data.categories);
   };
+
+  useEffect(() => {
+    getCategory();
+  }, []);
 
   const newQuestion = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:4002/api/v1/question",
+        `${apiUrl}/question`,
         { category, topic, message },
         options
       );
@@ -68,17 +74,13 @@ function NewsQuestions() {
             <Form onSubmit={newQuestion}>
               <Form.Group className="mb-3">
                 <Form.Label>Categoria </Form.Label>
-                <select
-                  value={category}
-                  onChange={handleChangeCategory}
-                  placeholder="Seleccionar categoria"
-                >
-                  <option value="" disabled selected>
+                <select onChange={handleChangeCategory}>
+                  <option value={category} disabled selected>
                     Selecciona categoria
                   </option>
                   {categories?.map((category) => (
                     <option key={category._id} value={category._id}>
-                      {category.name}{" "}
+                      {category.name}
                     </option>
                   ))}
                 </select>

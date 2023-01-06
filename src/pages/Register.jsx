@@ -6,6 +6,8 @@ import { AiFillEye } from "react-icons/ai";
 import "../css/register.css";
 
 const Register = () => {
+  const apiUrl = process.env.REACT_APP_API_URL;
+
   const [eye, setEye] = useState(false);
 
   const handleClickEye = () => {
@@ -20,10 +22,11 @@ const Register = () => {
 
   const signUpUser = async (name, email, password) => {
     try {
-      const response = await axios.post(
-        "http://localhost:4002/api/v1/users/signup",
-        { name: name, email: email, password: password }
-      );
+      const response = await axios.post(`${apiUrl}/users/signup`, {
+        name: name,
+        email: email,
+        password: password,
+      });
       const data = await response;
       return data;
     } catch (error) {

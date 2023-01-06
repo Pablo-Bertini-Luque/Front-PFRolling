@@ -1,8 +1,8 @@
-const API_URL = "http://localhost:4002/api/v1";
+const apiUrl = process.env.REACT_APP_API_URL;
 
 export async function GetAllQuestion() {
   try {
-    const response = await fetch(`${API_URL}/question`);
+    const response = await fetch(`${apiUrl}/question`);
     const data = await response.json();
     return data;
   } catch (error) {
@@ -12,7 +12,7 @@ export async function GetAllQuestion() {
 
 export async function GetAllCategories() {
   try {
-    const response = await fetch(`${API_URL}/category`);
+    const response = await fetch(`${apiUrl}/category`);
     const data = await response.json();
     return data;
   } catch (error) {
