@@ -7,20 +7,20 @@ function SearchBar() {
   const [search, setSearch] = useState("");
   const [questions, setQuestions] = useState([]);
 
-  useEffect(() => {
-    GetAllQuestion();
-  }, []);
+  // useEffect(() => {
+  //   GetAllQuestion();
+  // }, []);
 
-  const GetAllQuestion = async () => {
-    try {
-      const response = await fetch("http://localhost:4002/api/v1/question");
-      const data = await response.json();
-      console.log(data.questions);
-      setQuestions(data.questions);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // const GetAllQuestion = async () => {
+  //   try {
+  //     const response = await fetch("http://localhost:4002/api/v1/question");
+  //     const data = await response.json();
+  //     console.log(data.questions);
+  //     setQuestions(data.questions);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   // const resultSearch = (termino) => {
   //   const data = questions.filter((question) => {

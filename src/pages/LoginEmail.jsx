@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../css/loginEmail.css";
-import { Formik, replace } from "formik";
+import { Formik } from "formik";
 import { AiFillEye } from "react-icons/ai";
 import axios from "axios";
 
 function LoginEmail() {
+  const apiUrl = process.env.REACT_APP_API_URL;
+
   const [eye, setEye] = useState(false);
 
   const [username, setUsername] = useState("");
@@ -14,13 +16,10 @@ function LoginEmail() {
 
   const log = async (username, password) => {
     try {
-      const response = await axios.post(
-        "http://localhost:4002/api/v1/users/login",
-        {
-          email: username,
-          password: password,
-        }
-      );
+      const response = await axios.post(`${apiUrl}/users/login`, {
+        email: username,
+        password: password,
+      });
       const data = await response;
       return data;
     } catch (error) {

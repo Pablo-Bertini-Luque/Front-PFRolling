@@ -6,14 +6,14 @@ import Footer from "../components/Footer";
 import "../css/completeQuestions.css";
 
 export function QuestionsByCategory() {
+  const apiUrl = process.env.REACT_APP_API_URL;
+
   const [categories, setCategories] = useState([]);
 
   const { id } = useParams();
 
   const questionCategoryById = async () => {
-    const response = await fetch(
-      `http://localhost:4002/api/v1/question/category/${id}`
-    );
+    const response = await fetch(`${apiUrl}/question/category/${id}`);
     const data = await response.json();
     setCategories(data);
     console.log(data);

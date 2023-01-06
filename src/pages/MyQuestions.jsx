@@ -4,6 +4,8 @@ import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import "../css/MyQuestions.css";
 
 function MyQuestions() {
+  const apiUrl = process.env.REACT_APP_API_URL;
+
   const { id } = useParams();
 
   const navigate = useNavigate();
@@ -12,17 +14,13 @@ function MyQuestions() {
   const [user, setUser] = useState();
 
   const userById = async () => {
-    const response = await fetch(
-      `http://localhost:4002/api/v1/users/list/${id}`
-    );
+    const response = await fetch(`${apiUrl}/users/list/${id}`);
     const data = await response.json();
     setUser(data);
   };
 
   const questionsByUser = async () => {
-    const response = await fetch(
-      `http://localhost:4002/api/v1/question/myquestions/${id}`
-    );
+    const response = await fetch(`${apiUrl}/question/myquestions/${id}`);
     const data = await response.json();
     setQuestions(data);
     console.log(data);

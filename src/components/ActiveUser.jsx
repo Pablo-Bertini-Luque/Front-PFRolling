@@ -3,6 +3,8 @@ import { Button, Modal, Form, Container, Row, Col } from "react-bootstrap";
 import axios from "axios";
 
 function ReactiveUser() {
+  const apiUrl = process.env.REACT_APP_API_URL;
+
   const [addUser, setAddUser] = useState("");
   const [show, setShow] = useState(false);
 
@@ -20,7 +22,7 @@ function ReactiveUser() {
     e.preventDefault();
     try {
       const response = await axios.patch(
-        `http://localhost:4002/api/v1/users/active/${addUser}`,
+        `${apiUrl}/users/active/${addUser}`,
         {},
         options
       );

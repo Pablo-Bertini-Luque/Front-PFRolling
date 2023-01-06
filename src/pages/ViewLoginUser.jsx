@@ -14,14 +14,14 @@ import "../css/viewUser.css";
 import "../css/navbar.css";
 
 const ViewLoginUser = () => {
+  const apiUrl = process.env.REACT_APP_API_URL;
+
   const { id } = useParams();
 
   const [user, setUser] = useState();
 
   const userById = async () => {
-    const response = await fetch(
-      `http://localhost:4002/api/v1/users/list/${id}`
-    );
+    const response = await fetch(`${apiUrl}/users/list/${id}`);
     const data = await response.json();
     setUser(data);
     console.log(data);
