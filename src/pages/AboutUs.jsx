@@ -18,33 +18,33 @@ function AboutUs() {
           <h1 className="header">¿Quienes somos?</h1>
           <Col>
             <Image src={Pablo} roundedCircle className="w-50" />
-            <Link
-              to="https://www.linkedin.com/in/pablo-ezequiel-bertini-luque/"
+            <a
+              href="https://www.linkedin.com/in/pablo-ezequiel-bertini-luque/"
               className="d-block mt-2"
               style={{ textDecoration: "none" }}
             >
               Pablo Bertini Luque
-            </Link>
+            </a>
           </Col>
           <Col>
             <Image src={Axel} roundedCircle className="w-50" />
-            <Link
-              to="https://www.linkedin.com/in/axel-angelucci/"
+            <a
+              href="https://www.linkedin.com/in/axel-angelucci/"
               className="d-block mt-2"
               style={{ textDecoration: "none" }}
             >
               Axel Angelucci
-            </Link>
+            </a>
           </Col>
           <Col>
             <Image src={Tomas} roundedCircle className="w-50" />
-            <Link
-              to="https://www.linkedin.com/in/tomas-dnl/"
+            <a
+              href="https://www.linkedin.com/in/tomas-dnl/"
               className="d-block mt-2"
               style={{ textDecoration: "none" }}
             >
               Tomas Aranda
-            </Link>
+            </a>
           </Col>
         </Row>
       </Container>
