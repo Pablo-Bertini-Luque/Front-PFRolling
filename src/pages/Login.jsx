@@ -30,6 +30,9 @@ const Login = () => {
           <Link to="/login/email" className="login__email">
             Continuar con correo electrónico
           </Link>
+          <Link to="/register" className="notFound">
+            Registrarse
+          </Link>
           <Link className="notFound" to="/">
             Volver a Inicio
           </Link>
