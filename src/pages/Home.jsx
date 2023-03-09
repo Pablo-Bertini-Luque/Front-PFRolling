@@ -3,6 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { AllQuestion } from "../hooks/useQuestion";
 import NavBarComponents from "../components/NavBar";
 import ColumnCategories from "../components/ColumnCategories";
+import Footer from "../components/Footer";
 import SearchBar from "../components/SearchBar";
 import NewsQuestions from "../components/NewQuestion";
 import "../css/home.css";
@@ -14,7 +15,7 @@ function Home() {
       <Container>
         <SearchBar />
       </Container>
-      <Container fluid className="m-auto p-0">
+      <Container fluid className="m-auto">
         <Row>
           <Col
             xxxl={3}
@@ -37,6 +38,7 @@ function Home() {
           </Col>
         </Row>
       </Container>
+      <Footer />
     </>
   );
 }
