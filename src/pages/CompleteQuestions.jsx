@@ -5,16 +5,17 @@ import NavBarComponents from "../components/NavBar";
 import Footer from "../components/Footer";
 import "../css/completeQuestions.css";
 import axios from "axios";
-import { ModalAnswer } from "../components/ModalAnswer";
+// import { ModalAnswer } from "../components/ModalAnswer";
 
 export function CompleteQuestions() {
   const apiUrl = process.env.REACT_APP_API_URL;
+  const { id } = useParams();
   const [show, setShow] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [answer, setAnswer] = useState();
-  const handleShow = () => setShow(true);
-  const { id } = useParams();
   const [tokenAccess, setTokenAccess] = useState(null);
+  const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
 
   const options = {
     headers: {
@@ -30,12 +31,15 @@ export function CompleteQuestions() {
   };
 
   const handleChangeAnswer = (e) => {
-    setAnswer(e.target.value);
-    console.log(e.target.value);
-  };
-
-  const reload = () => {
-    window.location.reload(false);
+    const response = e.target.value;
+    setAnswer(response);
+    if (response.lenght < 10 || response.lenght > 300) {
+      <Form.Text className="fs-6">
+        La respuesta debe contener un mínimo de 10 caracteres y un máximo de
+        300.
+      </Form.Text>;
+    }
+    console.log(response);
   };
 
   const CreateAnswer = async (e) => {
@@ -50,7 +54,7 @@ export function CompleteQuestions() {
         options
       );
       const data = await response.json;
-      setShow(false);
+      // setShow(false);
       return data;
     } catch (error) {
       console.error(error);
@@ -70,6 +74,41 @@ export function CompleteQuestions() {
     }
     console.log("show", show);
   }, [show]);
+
+  const ModalAnswer = () => {
+    return (
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>
+            {tokenAccess ? "Respuesta" : "Inicia Sesion!"}
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {tokenAccess ? (
+            <Form onSubmit={CreateAnswer}>
+              <Form.Group className="mb-3">
+                <Form.Control
+                  value={answer}
+                  onChange={handleChangeAnswer}
+                  as="textarea"
+                  rows={3}
+                />
+              </Form.Group>
+              <Button variant="primary" type="submit">
+                Enviar respuesta
+              </Button>
+            </Form>
+          ) : (
+            <p>
+              Para poder escribir una respuesta, tienes que haber iniciado
+              sesión. Haz click <Link to="/login">aqui</Link> para iniciar
+              sesión
+            </p>
+          )}
+        </Modal.Body>
+      </Modal>
+    );
+  };
 
   return (
     <>
@@ -96,15 +135,7 @@ export function CompleteQuestions() {
             >
               Escribe una respuesta
             </Button>
-            <ModalAnswer
-              tokenAccess={tokenAccess}
-              show={show}
-              setShow={setShow}
-              CreateAnswer={CreateAnswer}
-              answer={answer}
-              handleChangeAnswer={handleChangeAnswer}
-            />
-            {/* <Col>{modal()}</Col> */}
+            <ModalAnswer />
           </Col>
         </Row>
       </Container>
