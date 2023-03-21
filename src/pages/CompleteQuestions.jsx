@@ -5,18 +5,18 @@ import NavBarComponents from "../components/NavBar";
 import Footer from "../components/Footer";
 import "../css/completeQuestions.css";
 import axios from "axios";
-// import { ModalAnswer } from "../components/ModalAnswer";
 
 export function CompleteQuestions() {
   const apiUrl = process.env.REACT_APP_API_URL;
   const { id } = useParams();
-  const [show, setShow] = useState(false);
+
   const [questions, setQuestions] = useState([]);
   const [answer, setAnswer] = useState();
-  const [tokenAccess, setTokenAccess] = useState(null);
+  const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
 
+  const tokenAccess = localStorage.getItem("user-token");
   const options = {
     headers: {
       access_token: tokenAccess,
@@ -31,15 +31,8 @@ export function CompleteQuestions() {
   };
 
   const handleChangeAnswer = (e) => {
-    const response = e.target.value;
-    setAnswer(response);
-    if (response.lenght < 10 || response.lenght > 300) {
-      <Form.Text className="fs-6">
-        La respuesta debe contener un mínimo de 10 caracteres y un máximo de
-        300.
-      </Form.Text>;
-    }
-    console.log(response);
+    setAnswer(e.target.value);
+    console.log(e.target.value);
   };
 
   const CreateAnswer = async (e) => {
@@ -54,26 +47,11 @@ export function CompleteQuestions() {
         options
       );
       const data = await response.json;
-      // setShow(false);
       return data;
     } catch (error) {
       console.error(error);
     }
   };
-
-  useEffect(() => {
-    GetQuestionById();
-    const token = localStorage.getItem("user-token");
-    setTokenAccess(token);
-    console.log(token);
-  }, []);
-
-  useEffect(() => {
-    if (show) {
-      ModalAnswer();
-    }
-    console.log("show", show);
-  }, [show]);
 
   const ModalAnswer = () => {
     return (
@@ -109,6 +87,10 @@ export function CompleteQuestions() {
       </Modal>
     );
   };
+
+  useEffect(() => {
+    GetQuestionById();
+  }, []);
 
   return (
     <>
