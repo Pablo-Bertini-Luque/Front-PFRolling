@@ -5,17 +5,18 @@ import NavBarComponents from "../components/NavBar";
 import Footer from "../components/Footer";
 import "../css/completeQuestions.css";
 import axios from "axios";
-import { ModalAnswer } from "../components/ModalAnswer";
 
 export function CompleteQuestions() {
   const apiUrl = process.env.REACT_APP_API_URL;
-  const [show, setShow] = useState(false);
+  const { id } = useParams();
+
   const [questions, setQuestions] = useState([]);
   const [answer, setAnswer] = useState();
+  const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
-  const { id } = useParams();
-  const [tokenAccess, setTokenAccess] = useState(null);
+  const handleClose = () => setShow(false);
 
+  const tokenAccess = localStorage.getItem("user-token");
   const options = {
     headers: {
       access_token: tokenAccess,
@@ -34,10 +35,6 @@ export function CompleteQuestions() {
     console.log(e.target.value);
   };
 
-  const reload = () => {
-    window.location.reload(false);
-  };
-
   const CreateAnswer = async (e) => {
     e.preventDefault();
     try {
@@ -50,26 +47,50 @@ export function CompleteQuestions() {
         options
       );
       const data = await response.json;
-      setShow(false);
       return data;
     } catch (error) {
       console.error(error);
     }
   };
 
-  useEffect(() => {
-    GetQuestionById();
-    const token = localStorage.getItem("user-token");
-    setTokenAccess(token);
-    console.log(token);
-  }, []);
+  const ModalAnswer = () => {
+    return (
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>
+            {tokenAccess ? "Respuesta" : "Inicia Sesion!"}
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {tokenAccess ? (
+            <Form onSubmit={CreateAnswer}>
+              <Form.Group className="mb-3">
+                <Form.Control
+                  value={answer}
+                  onChange={handleChangeAnswer}
+                  as="textarea"
+                  rows={3}
+                />
+              </Form.Group>
+              <Button variant="primary" type="submit">
+                Enviar respuesta
+              </Button>
+            </Form>
+          ) : (
+            <p>
+              Para poder escribir una respuesta, tienes que haber iniciado
+              sesión. Haz click <Link to="/login">aqui</Link> para iniciar
+              sesión
+            </p>
+          )}
+        </Modal.Body>
+      </Modal>
+    );
+  };
 
   useEffect(() => {
-    if (show) {
-      ModalAnswer();
-    }
-    console.log("show", show);
-  }, [show]);
+    GetQuestionById();
+  }, []);
 
   return (
     <>
@@ -96,15 +117,7 @@ export function CompleteQuestions() {
             >
               Escribe una respuesta
             </Button>
-            <ModalAnswer
-              tokenAccess={tokenAccess}
-              show={show}
-              setShow={setShow}
-              CreateAnswer={CreateAnswer}
-              answer={answer}
-              handleChangeAnswer={handleChangeAnswer}
-            />
-            {/* <Col>{modal()}</Col> */}
+            <ModalAnswer />
           </Col>
         </Row>
       </Container>
