@@ -9,7 +9,6 @@ import axios from "axios";
 export function CompleteQuestions() {
   const apiUrl = process.env.REACT_APP_API_URL;
   const { id } = useParams();
-
   const [questions, setQuestions] = useState([]);
   const [answer, setAnswer] = useState();
   const [show, setShow] = useState(false);
@@ -17,6 +16,7 @@ export function CompleteQuestions() {
   const handleClose = () => setShow(false);
 
   const tokenAccess = localStorage.getItem("user-token");
+
   const options = {
     headers: {
       access_token: tokenAccess,
@@ -31,6 +31,14 @@ export function CompleteQuestions() {
   };
 
   const handleChangeAnswer = (e) => {
+    if (e.target.value.lenght < 10) {
+      return (
+        <Form.Text className="fs-6">
+          La respuesta debe contener un mínimo de 10 caracteres y un máximo de
+          300.
+        </Form.Text>
+      );
+    }
     setAnswer(e.target.value);
     console.log(e.target.value);
   };
@@ -47,6 +55,7 @@ export function CompleteQuestions() {
         options
       );
       const data = await response.json;
+      setShow(false);
       return data;
     } catch (error) {
       console.error(error);
@@ -72,7 +81,11 @@ export function CompleteQuestions() {
                   rows={3}
                 />
               </Form.Group>
-              <Button variant="primary" type="submit">
+              <Form.Text className="fs-6">
+                La respuesta debe contener un mínimo de 10 caracteres y un
+                máximo de 300.
+              </Form.Text>
+              <Button variant="primary" type="submit" className="mt-3">
                 Enviar respuesta
               </Button>
             </Form>
@@ -91,6 +104,13 @@ export function CompleteQuestions() {
   useEffect(() => {
     GetQuestionById();
   }, []);
+
+  useEffect(() => {
+    if (show) {
+    } else if (!show) {
+      GetQuestionById();
+    }
+  }, [show]);
 
   return (
     <>
@@ -117,7 +137,7 @@ export function CompleteQuestions() {
             >
               Escribe una respuesta
             </Button>
-            <ModalAnswer />
+            <Col>{ModalAnswer()}</Col>
           </Col>
         </Row>
       </Container>
