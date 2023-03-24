@@ -8,33 +8,33 @@ function SearchBar() {
   const [search, setSearch] = useState("");
   const [questions, setQuestions] = useState([]);
 
-  useEffect(() => {
-    GetAllQuestion();
-  }, []);
+  // useEffect(() => {
+  //   GetAllQuestion();
+  // }, []);
 
-  const GetAllQuestion = async () => {
-    try {
-      const response = await fetch(`${apiUrl}question?category=${search}`);
-      const data = await response.json();
-      console.log(data.questions);
-      setQuestions(data.questions);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // const GetAllQuestion = async () => {
+  //   try {
+  //     const response = await fetch(`${apiUrl}question?category=${search}`);
+  //     const data = await response.json();
+  //     console.log(data.questions);
+  //     setQuestions(data.questions);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
-  const resultSearch = (termino) => {
-    const data = questions.filter((question) => {
-      if (question.category.name.includes(termino)) {
-        return question;
-      }
-    });
-    setQuestions(data);
-  };
+  // const resultSearch = (termino) => {
+  //   const data = questions.filter((question) => {
+  //     if (question.category.name.includes(termino)) {
+  //       return question;
+  //     }
+  //   });
+  //   setQuestions(data);
+  // };
 
   const handleChange = (e) => {
     setSearch(e.target.value);
-    resultSearch(e.target.value);
+    // resultSearch(e.target.value);
   };
 
   return (
