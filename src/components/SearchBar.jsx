@@ -3,45 +3,39 @@ import { useEffect, useState } from "react";
 import { Button, Container, Row, Col, Form } from "react-bootstrap";
 import { ImSearch } from "react-icons/im";
 
-function SearchBar() {
+function SearchBar({ setQuestions }) {
   const apiUrl = process.env.REACT_APP_API_URL;
   const [search, setSearch] = useState("");
-  const [questions, setQuestions] = useState([]);
 
-  // useEffect(() => {
-  //   GetAllQuestion();
-  // }, []);
+  const GetSearchQuestion = async (e) => {
+    e?.preventDefault();
+    try {
+      const response = await fetch(
+        `${apiUrl}/question/search?message=${search}`
+      );
+      const data = await response.json();
+      setQuestions(data);
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-  // const GetAllQuestion = async () => {
-  //   try {
-  //     const response = await fetch(`${apiUrl}question?category=${search}`);
-  //     const data = await response.json();
-  //     console.log(data.questions);
-  //     setQuestions(data.questions);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
-  // const resultSearch = (termino) => {
-  //   const data = questions.filter((question) => {
-  //     if (question.category.name.includes(termino)) {
-  //       return question;
-  //     }
-  //   });
-  //   setQuestions(data);
-  // };
+  useEffect(() => {
+    if (search.length < 1) {
+      GetSearchQuestion();
+    }
+  }, [search]);
 
   const handleChange = (e) => {
     setSearch(e.target.value);
-    // resultSearch(e.target.value);
   };
 
   return (
     <Container>
       <Row>
         <Col>
-          <Form className="d-flex m-3">
+          <Form className="d-flex m-3" onSubmit={GetSearchQuestion}>
             <Form.Control
               type="search"
               placeholder="Busqueda por tema o categoría"
@@ -50,7 +44,7 @@ function SearchBar() {
               aria-label="Search"
               onChange={handleChange}
             />
-            <Button variant="secondary">
+            <Button variant="secondary" type="submit">
               <ImSearch />
             </Button>
           </Form>

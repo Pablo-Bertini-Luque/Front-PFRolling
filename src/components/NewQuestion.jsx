@@ -3,15 +3,13 @@ import axios from "axios";
 import { Container, Row, Col, Button, Form, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-function NewsQuestions() {
+function NewsQuestions({ questions, setQuestions }) {
   const apiUrl = process.env.REACT_APP_API_URL;
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
   const [categories, setCategories] = useState([]);
-
   const [category, setCategory] = useState("");
   const [topic, setTopic] = useState("");
   const [message, setMessage] = useState("");
@@ -29,10 +27,6 @@ function NewsQuestions() {
     setCategories(data.categories);
   };
 
-  useEffect(() => {
-    getCategory();
-  }, []);
-
   const newQuestion = async (e) => {
     e.preventDefault();
     try {
@@ -41,7 +35,8 @@ function NewsQuestions() {
         { category, topic, message },
         options
       );
-      const data = await response.json();
+      const data = await response;
+      setShow(false);
       return data;
     } catch (error) {
       console.error(error);
@@ -63,14 +58,20 @@ function NewsQuestions() {
     console.log(e.target.value);
   };
 
+  useEffect(() => {
+    getCategory();
+  }, []);
+
   const modal = () => {
-    if (localStorage.getItem("user-token")) {
-      return (
-        <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Haz una pregunta</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
+    return (
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>
+            {tokenAccess ? "Haz una pregunta" : "Inicia Sesion!"}
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {tokenAccess ? (
             <Form onSubmit={newQuestion}>
               <Form.Group className="mb-3">
                 <Form.Label>Categoria </Form.Label>
@@ -117,35 +118,21 @@ function NewsQuestions() {
                 Enviar pregunta
               </Button>
             </Form>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Cerrar
-            </Button>
-          </Modal.Footer>
-        </Modal>
-      );
-    } else {
-      return (
-        <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Inicia Sesion!</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
+          ) : (
             <p>
               Para poder realizar una pregunta, tienes que haber iniciado
               sesión. Haz click <Link to="/login">aqui</Link> para iniciar
               sesión
             </p>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Cerrar
-            </Button>
-          </Modal.Footer>
-        </Modal>
-      );
-    }
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Cerrar
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    );
   };
 
   return (

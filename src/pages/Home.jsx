@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { AllQuestion } from "../hooks/useQuestion";
 import NavBarComponents from "../components/NavBar";
@@ -9,11 +9,12 @@ import NewsQuestions from "../components/NewQuestion";
 import "../css/home.css";
 
 function Home() {
+  const [questions, setQuestions] = useState([]);
   return (
     <>
       <NavBarComponents />
       <Container>
-        <SearchBar />
+        <SearchBar setQuestions={setQuestions} />
       </Container>
       <Container fluid className="m-auto">
         <Row>
@@ -32,9 +33,12 @@ function Home() {
           </Col>
           <Col className="bg-primary">
             <Col>
-              <NewsQuestions />
+              <NewsQuestions
+                questions={questions}
+                setQuestions={setQuestions}
+              />
             </Col>
-            <AllQuestion />
+            <AllQuestion questions={questions} setQuestions={setQuestions} />
           </Col>
         </Row>
       </Container>
