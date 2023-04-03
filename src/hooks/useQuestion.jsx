@@ -1,16 +1,25 @@
 import { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import * as API from "../services/question";
 import "../css/useQuestion.css";
 
-export function AllQuestion() {
-  const [questions, setQuestions] = useState([]);
+export function AllQuestion({ questions, setQuestions }) {
+  const apiUrl = process.env.REACT_APP_API_URL;
+  // const [questions, setQuestions] = useState([]);
+
+  const GetAllQuestion = async () => {
+    try {
+      const response = await fetch(`${apiUrl}/question`);
+      const data = await response.json();
+      setQuestions(data.questions);
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
-    API.GetAllQuestion()
-      .then((data) => setQuestions(data.questions))
-      .catch((error) => console.log(error));
+    GetAllQuestion();
   }, []);
 
   return (

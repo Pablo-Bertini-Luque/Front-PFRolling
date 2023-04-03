@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "../css/loginEmail.css";
 import { Formik } from "formik";
 import { AiFillEye } from "react-icons/ai";
 import axios from "axios";
+import "../css/loginEmail.css";
 
 function LoginEmail() {
   const apiUrl = process.env.REACT_APP_API_URL;

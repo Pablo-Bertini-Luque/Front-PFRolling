@@ -1,16 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import * as API from "../services/question";
 import "../css/home.css";
 
 function ColumnCategories() {
+  const apiUrl = process.env.REACT_APP_API_URL;
   const [categories, setCategories] = useState([]);
 
+  const GetAllCategories = async () => {
+    try {
+      const response = await fetch(`${apiUrl}/category`);
+      const data = await response.json();
+      setCategories(data.categories);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
-    API.GetAllCategories()
-      .then((data) => setCategories(data.categories))
-      .catch((error) => console.log(error));
+    GetAllCategories();
   }, []);
 
   return (

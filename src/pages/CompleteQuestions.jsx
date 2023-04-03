@@ -10,7 +10,7 @@ export function CompleteQuestions() {
   const apiUrl = process.env.REACT_APP_API_URL;
   const { id } = useParams();
   const [questions, setQuestions] = useState([]);
-  const [answer, setAnswer] = useState();
+  const [answer, setAnswer] = useState("");
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
@@ -31,34 +31,31 @@ export function CompleteQuestions() {
   };
 
   const handleChangeAnswer = (e) => {
-    if (e.target.value.lenght < 10) {
-      return (
-        <Form.Text className="fs-6">
-          La respuesta debe contener un mínimo de 10 caracteres y un máximo de
-          300.
-        </Form.Text>
-      );
-    }
     setAnswer(e.target.value);
     console.log(e.target.value);
   };
 
   const CreateAnswer = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post(
-        `${apiUrl}/answer/`,
-        {
-          idQuestion: id,
-          message: answer,
-        },
-        options
-      );
-      const data = await response.json;
-      setShow(false);
-      return data;
-    } catch (error) {
-      console.error(error);
+    if (answer.length > 10 && answer.length < 300) {
+      try {
+        const response = await axios.post(
+          `${apiUrl}/answer/`,
+          {
+            idQuestion: id,
+            message: answer,
+          },
+          options
+        );
+        const data = await response.json;
+        setShow(false);
+        return data;
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      alert("El mensaje no puede contener menos de 10 caracteres");
+      return;
     }
   };
 
@@ -79,9 +76,10 @@ export function CompleteQuestions() {
                   onChange={handleChangeAnswer}
                   as="textarea"
                   rows={3}
+                  required
                 />
               </Form.Group>
-              <Form.Text className="fs-6">
+              <Form.Text style={{ fontSize: "1.5vw", display: "block" }}>
                 La respuesta debe contener un mínimo de 10 caracteres y un
                 máximo de 300.
               </Form.Text>
