@@ -116,7 +116,7 @@ export function CompleteQuestions() {
       <Container className="containerQuestion">
         <Row>
           <Col className="mt-3">
-            <p className="fs-3 d-flex question">{questions.message}</p>
+            <h2 className="fs-3 d-flex question">{questions.message}</h2>
             <p className="tagCategory" style={{ width: "5.4em" }}>
               {" "}
               {questions.category?.name}

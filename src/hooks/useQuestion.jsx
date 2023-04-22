@@ -34,7 +34,7 @@ export function AllQuestion({ questions, setQuestions }) {
                     to={`/question/${question._id}`}
                     className="text-dark text-decoration-none"
                   >
-                    <p>Tema: {question.topic}</p>
+                    <h6>Tema: {question.topic}</h6>
                   </Link>
                   <p>{question.message}</p>
                   <Container
