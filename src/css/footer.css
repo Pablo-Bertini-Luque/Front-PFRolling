@@ -4,16 +4,10 @@
   padding: 0%;
 }
 
-.footer {
+.containerFooter {
   background-color: gray;
 }
 
 .logoFooter {
   width: 5vh;
-}
-
-.footerCenter {
-  font-size: 1vmax;
-  font-weight: bold;
-  text-align: center;
 }
