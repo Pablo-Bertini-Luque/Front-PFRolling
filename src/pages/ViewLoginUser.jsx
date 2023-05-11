@@ -62,18 +62,18 @@ const ViewLoginUser = () => {
           </Col>
         </Container>
       </Navbar>
-      <div className="viewUser">
-        <div className="viewUser__header">
-          <h2 className="viewUser__title">¡Bienvenido {user?.user.name}! </h2>
-        </div>
-        <div className="viewUser__container-description">
-          <p className="viewUser__description">
-            En este sección encontraras toda tu informacion
-          </p>
-        </div>
-        <div className="viewUser__main">
-          <Container>
-            <Row>
+      <div className="container">
+        <div className="viewUser">
+          <div className="viewUser__header">
+            <h2 className="viewUser__title">¡Bienvenido {user?.user.name}! </h2>
+          </div>
+          <div className="viewUser__container-description">
+            <p className="viewUser__description">
+              En este sección encontraras toda tu informacion
+            </p>
+          </div>
+          <div className="viewUser__main">
+            <div className="d-flex me-3">
               <Col>
                 {["Light"].map((variant) => (
                   <Card
@@ -131,9 +131,10 @@ const ViewLoginUser = () => {
                   </Card>
                 ))}
               </Col>
-            </Row>
-          </Container>
-          <Outlet />
+            </div>
+
+            <Outlet />
+          </div>
         </div>
       </div>
       <Footer />

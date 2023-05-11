@@ -25,7 +25,7 @@ function ColumnCategories() {
     <>
       <Container fluid className="m-auto p-0">
         <Row>
-          <Col>
+          <Col className="min-vh-100">
             <ul className="mt-4">
               <li>
                 <NavDropdown
