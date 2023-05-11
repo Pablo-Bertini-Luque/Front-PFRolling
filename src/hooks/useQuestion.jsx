@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Badge } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "../css/useQuestion.css";
 
@@ -26,7 +26,7 @@ export function AllQuestion({ questions, setQuestions }) {
     <>
       <Container>
         <Row>
-          <Col>
+          <Col className="min-vh-100">
             <ul>
               {questions?.map((question) => (
                 <li key={question._id} className="mb-5 topic">
@@ -37,12 +37,13 @@ export function AllQuestion({ questions, setQuestions }) {
                     <h6>Tema: {question.topic}</h6>
                   </Link>
                   <p>{question.message}</p>
-                  <Container
+                  <Badge bg="secondary">{question.category.name}</Badge>
+                  {/* <Container
                     className="p-0 tagCategories"
                     style={{ width: "5.4em" }}
                   >
                     {question.category.name}
-                  </Container>
+                  </Container> */}
                 </li>
               ))}
             </ul>

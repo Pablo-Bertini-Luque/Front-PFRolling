@@ -74,8 +74,8 @@ function NewsQuestions({ questions, setQuestions }) {
           {tokenAccess ? (
             <Form onSubmit={newQuestion}>
               <Form.Group className="mb-3">
-                <Form.Label>Categoria </Form.Label>
-                <select onChange={handleChangeCategory}>
+                <Form.Label className="">Categoria </Form.Label>
+                <select className="form-select" onChange={handleChangeCategory}>
                   <option value={category} disabled selected>
                     Selecciona categoria
                   </option>

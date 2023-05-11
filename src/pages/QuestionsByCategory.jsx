@@ -37,7 +37,7 @@ export function QuestionsByCategory() {
                     {category.user?.name}
                   </Card.Subtitle>
                   <Card.Text className="pt-2">{category.answer}</Card.Text>
-                  <Card.Subtitle>{category.category.name} </Card.Subtitle>
+                  <Card.Subtitle>{category.category?.name} </Card.Subtitle>
                   <Link
                     to={`/question/${category._id}`}
                     className="d-flex justify-content-end"

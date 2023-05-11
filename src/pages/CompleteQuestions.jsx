@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col, Button, Modal, Form } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Button,
+  Modal,
+  Form,
+  Badge,
+} from "react-bootstrap";
 import { useParams, Link } from "react-router-dom";
 import NavBarComponents from "../components/NavBar";
 import Footer from "../components/Footer";
@@ -117,10 +125,9 @@ export function CompleteQuestions() {
         <Row>
           <Col className="mt-3">
             <h2 className="fs-3 d-flex question">{questions.message}</h2>
-            <p className="tagCategory" style={{ width: "5.4em" }}>
-              {" "}
+            <Badge bg="secondary" className="mb-1">
               {questions.category?.name}
-            </p>
+            </Badge>
             <p style={{ fontSize: "10px" }}>
               Creado por: {questions.user?.name}
             </p>
