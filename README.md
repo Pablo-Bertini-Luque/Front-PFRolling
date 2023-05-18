@@ -1,4 +1,5 @@
-                                           STACK OVER ROLLING 
+<h1 align="center">STACK OVER ROLLING</h1>
+</hr>
 
 Proyecto final desarrollado para el curso de Full-Stack de Rolling Code School, Tucumán, Argentina.
 
