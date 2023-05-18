@@ -1,10 +1,10 @@
-                                           <h1><b> STACK OVER ROLLING </b></h1>
+                                           STACK OVER ROLLING 
 
 Proyecto final desarrollado para el curso de Full-Stack de Rolling Code School, Tucumán, Argentina.
 
 El proyecto consiste en una página de preguntas y respuestas, donde los usuarios pueden realizar consultas y respuestas sobre HTML, CSS, JAVASCRIPT Y GIT.
 
-Las tecnologías utilizadas fueron:
+Las tecnologías utilizadas fueron:</br>
 • HTML</br>
 • CSS</br>
 • REACT</br>
