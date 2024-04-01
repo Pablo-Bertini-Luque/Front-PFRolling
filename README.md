@@ -7,6 +7,8 @@ El proyecto consiste en una página de preguntas y respuestas, donde los usuario
 
 El proyecto está conectado a una API REST, desarrollada en Node Js, el cual conecta a una base datos realizada con Mongo DB.
 
+Link del repositorio de la API Rest del proyecto: https://github.com/Pablo-Bertini-Luque/StackNow-Backend
+
 
 <h3>Tecnologías utilizadas:</h3>
 <ul>
